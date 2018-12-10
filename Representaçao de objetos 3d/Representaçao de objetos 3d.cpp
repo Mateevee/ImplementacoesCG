@@ -4,7 +4,7 @@
 #endif
 #include <GL/freeglut.h>
 #include <math.h>
-
+#include <stdio.h>
 #define NUM 60
 #define PI 3.1415927
 
@@ -17,16 +17,16 @@ float angle = 0;
 float raio = 1.5;
 float dir = 1;
 bool idleOn = true;
-int p = 1; 
-int q = 8; 
-float *vertices = NULL; 
-float t = 0.0; 
+int p = 1;
+int q = 8;
+float *vertices = NULL;
+float t = 0.0;
 int lastx = 0;
 int mode = 1;
 
 float x(int i, int j)
 {
-	float aux = mode==0?1:(R + r *cos((-1 + 2 * (float)j / q) * PI));
+	float aux = mode == 0 ? 1 : (R + r * cos((-1 + 2 * (float)j / q) * PI));
 	float aux2 = cos((float)i / p * t * 2 * PI);
 	return (aux*aux2);
 }
@@ -61,7 +61,7 @@ void fillVertexArray(void)
 void display(void)
 {
 	int  i, j;
-	vertices = new float[3 * (p + 1)*(q + 1)]; 
+	vertices = new float[3 * (p + 1)*(q + 1)];
 
 
 	glVertexPointer(3, GL_FLOAT, 0, vertices);
@@ -73,12 +73,12 @@ void display(void)
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	glLineWidth(1.0);
-	glColor3f(1,1,1);
+	glColor3f(1, 1, 1);
 
 	glRotatef(200, 1.0, 0.0, 0.0);
 	glRotatef(0, 0.0, 1.0, 0.0);
 	glRotatef(20, 0.0, 0.0, 1.0);
-	
+
 	fillVertexArray();
 
 	for (j = 0; j < q; j++)
@@ -135,7 +135,7 @@ void keyInput(unsigned char key, int x, int y)
 		}
 		glutPostRedisplay();
 		break;
-	
+
 	case '+':
 		glutPostRedisplay();
 		break;
@@ -183,7 +183,7 @@ int main(int argc, char **argv)
 
 	glutInitContextVersion(4, 3);
 	glutInitContextProfile(GLUT_COMPATIBILITY_PROFILE);
-
+	printf("Scroll do mouse - executar transformaçoes\nm - mudar o modo ");
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH | GLUT_RGB);
 	glutInitWindowSize(250, 250);
 	glutInitWindowPosition(100, 100);
@@ -198,4 +198,3 @@ int main(int argc, char **argv)
 
 	glutMainLoop();
 }
-
